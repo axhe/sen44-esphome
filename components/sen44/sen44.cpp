@@ -21,6 +21,11 @@ static const uint16_t SEN44_CMD_GET_ARTICLE_CODE = 0xD025;
 static const uint16_t SEN44_CMD_READ_PM_VALUES = 0x0353;
 static const uint16_t SEN44_CMD_READ_MESAUREMENT_TICKS = 0x0374;
 
+static const uint16_t SEN44_CMD_GET_SET_TEMPERATURE_OFFSET = 0x6014;
+static const uint16_t SEN44_CMD_WRITE_TEMPERATURE_OFFSET = 0x6002;
+static const uint16_t SEN44_DEVICE_STATUS_READ = 0xD206;
+static const uint16_t SEN44_DEVICE_STATUS_CLEAR = 0xD210;
+static const uint16_t SEN44_DEVICE_RESET = 0xD304;
 
 
 void SEN44Component::setup() {
