@@ -4,7 +4,6 @@
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/sensirion_common/i2c_sensirion.h"
 #include "esphome/core/application.h"
-#include "esphome/core/preferences.h"
 
 namespace esphome {
 namespace sen44 {
@@ -16,17 +15,6 @@ enum ERRORCODE {
   FIRMWARE_FAILED,
   UNKNOWN
 };
-
-// Shortest time interval of 3H for storing baseline values.
-// Prevents wear of the flash because of too many write operations
-const uint32_t SHORTEST_BASELINE_STORE_INTERVAL = 10800;
-// Store anyway if the baseline difference exceeds the max storage diff value
-const uint32_t MAXIMUM_STORAGE_DIFF = 50;
-
-struct Sen5xBaselines {
-  int32_t state0;
-  int32_t state1;
-} PACKED;  // NOLINT
 
 struct TemperatureCompensation {
   int16_t offset;
@@ -72,7 +60,6 @@ class SEN44Component : public PollingComponent, public sensirion_common::Sensiri
   std::string product_name_;
   uint8_t serial_number_[4];
   uint16_t firmware_version_;
-  ESPPreferenceObject pref_;
   optional<uint32_t> auto_cleaning_interval_;
   optional<TemperatureCompensation> temperature_compensation_;
   float temperature_offset_;  

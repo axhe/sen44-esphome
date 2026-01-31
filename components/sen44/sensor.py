@@ -19,7 +19,6 @@ from esphome.const import (
     DEVICE_CLASS_PM10,
     DEVICE_CLASS_PM25,
     DEVICE_CLASS_TEMPERATURE,
-    ICON_CHEMICAL_WEAPON,
     ICON_RADIATOR,
     ICON_THERMOMETER,
     ICON_WATER_PERCENT,
@@ -47,41 +46,33 @@ CONF_VOC = "voc"
 StartFanAction = sen44_ns.class_("StartFanAction", automation.Action)
 
 
-def float_previously_pct(value):
-    if isinstance(value, str) and "%" in value:
-        raise cv.Invalid(
-            f"The value '{value}' is a percentage. Suggested value: {float(value.strip('%')) / 100}"
-        )
-    return value
-
-
 CONFIG_SCHEMA = (
     cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(SEN44Component),
             cv.Optional(CONF_PM_1_0): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
-                icon=ICON_CHEMICAL_WEAPON,
+                icon="mdi:molecule",
                 accuracy_decimals=2,
                 device_class=DEVICE_CLASS_PM1,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
             cv.Optional(CONF_PM_2_5): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
-                icon=ICON_CHEMICAL_WEAPON,
+                icon="mdi:molecule",
                 accuracy_decimals=2,
                 device_class=DEVICE_CLASS_PM25,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
             cv.Optional(CONF_PM_4_0): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
-                icon=ICON_CHEMICAL_WEAPON,
+                icon="mdi:molecule",
                 accuracy_decimals=2,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
             cv.Optional(CONF_PM_10_0): sensor.sensor_schema(
                 unit_of_measurement=UNIT_MICROGRAMS_PER_CUBIC_METER,
-                icon=ICON_CHEMICAL_WEAPON,
+                icon="mdi:molecule",
                 accuracy_decimals=2,
                 device_class=DEVICE_CLASS_PM10,
                 state_class=STATE_CLASS_MEASUREMENT,
